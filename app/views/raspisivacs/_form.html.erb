@@ -1,0 +1,26 @@
+<% if @raspisivac.errors.any? %>
+<ul>
+  <% @raspisivac.errors.full_messages.each do |msg| %>
+    <li class="text-danger"><%= msg %></li>
+  <% end %>
+</ul>
+<% end %>
+<%= form_for @raspisivac, :html => { :multipart => true }, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="form-group">
+    <%= f.label "Raspisivač", :class => 'col-lg-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.text_field :name, :class => 'form-control', :id => "Input", :placeholder => "Unesite naziv raspisivača" %>
+    </div>
+  </div> 
+  <div class="form-group">
+    <%= f.label "Avatar", :class => 'col-lg-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.file_field :avatar, :class => 'btn btn-primary' %>
+    </div>
+  </div>   
+  <div class="form-actions">
+    <%= f.submit "Potvrdi", :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                raspisivacs_path, :class => 'btn' %>
+  </div>
+<% end %>

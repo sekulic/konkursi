@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ime: MyString
+  iznos: 9.99
+  rok: 2014-04-05
+  otvaranje: 2014-04-05
+
+two:
+  ime: MyString
+  iznos: 9.99
+  rok: 2014-04-05
+  otvaranje: 2014-04-05

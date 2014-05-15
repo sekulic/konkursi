@@ -1,0 +1,27 @@
+<div class="row">
+<%= render 'shared/left_sidebar_admin' %>
+<div class="col-lg-9">
+<div class="apple_pagination">
+<%= will_paginate @korisnici %>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>EMAIL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @korisnici.each do |korisnik| %>
+      <tr>
+        <td><%= korisnik.id %></td>
+        <td><%= korisnik.email %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="apple_pagination">
+<%= will_paginate @korisnici %>
+</div>
+</div>
+</div>

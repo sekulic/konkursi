@@ -1,0 +1,23 @@
+<div class="well bs-component">
+<form id="form_komentar" class="form-horizontal">
+<legend>Komentari</legend>
+    <div class="form-group">
+      <label for="textArea" class="col-lg-2 control-label">Postavi Komentar</label>
+      <div class="col-lg-10">
+        <textarea id="novi_komentar" class="form-control" rows="3" id="textArea"></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button type="submit" class="btn btn-primary">Postavi</button>
+      </div>
+    </div>
+</form>
+<h3><%= @pitanje.get('name') %></h3>
+<ul id="lista_komentara" class="list-group">
+</ul>
+<center>
+<ul class="pagination" id="pag">
+</ul>
+</center>
+</div>

@@ -1,0 +1,42 @@
+<%= render 'shared/slajder' %>
+<div class="row">
+<%= render 'shared/left_sidebar' %>
+
+<div class="col-lg-5">
+<% provide(:title, 'Početna') %>
+  <li class="list-group-item" id="header-of-table-home">
+    <span class="badge"></span>
+    <h3 class="text-primary">Aktuelni Konkursi</h3>
+  </li>
+<div id="demo2" class="scroll-text">    
+<ul class="list-group">
+<% @konkursi_aktuelni.each do |konkurs| %>	
+  <li class="list-group-item">
+  <%= link_to link_substring(konkurs.ime), konkurs_path(konkurs) %>
+  </li>
+<% end %>
+</ul>
+</div>
+  <li class="list-group-item" id="header-of-table-home">
+  	<h5><%= link_to "Svi aktuelni konkursi", "#" %></h5>
+  </li>
+ <br /> 
+  <li class="list-group-item" id="header-of-table-home">
+    <span class="badge"></span>
+    <h3 class="text-primary">Najavljeni Konkursi</h3>
+  </li>
+<div id="demoo2" class="scroll-text">    
+<ul class="list-group">
+<% @konkursi_najava.each do |konkurs| %>	
+  <li class="list-group-item">
+  <%= link_to link_substring(konkurs.ime), konkurs_path(konkurs) %>
+  </li>
+<% end %>
+</ul>
+</div>
+  <li class="list-group-item" id="header-of-table-home">
+  	<h5><%= link_to "Svi najavljeni konkursi", "#" %></h5>
+  </li>
+</div>
+<%= render 'shared/right_sidebar' %>   
+</div>       

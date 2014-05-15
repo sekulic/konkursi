@@ -1,0 +1,11 @@
+<% if user_signed_in? %>
+<%= content_tag 'div', 'loading ... ', id: "sadrzaj", data: {pitanja: Pit.all} %>
+<%= content_tag 'div', '', id: "korisnici", data: {korisnici: User.all} %>
+<%= content_tag 'div', '', id: "komentari", data: {komentari: Komentar.all} %>
+<% else %>
+<div class="well bs-component">
+<h2 class="text-primary">Morate biti ulogovani da bi ste učestvovali u diskusijama.</h2>
+<h4><%= link_to "Ulogujte se", new_user_session_path, :class=>"text-success"%></h4>
+<h4><%= link_to "Registrujte se", new_user_registration_path, :class=>"text-success" %></h4>
+</div>
+<% end %>

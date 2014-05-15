@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sektori_id: 1
+  konkurs_id: 1
+
+two:
+  sektori_id: 1
+  konkurs_id: 1

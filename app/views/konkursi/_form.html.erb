@@ -1,0 +1,113 @@
+<% if @konkurs.errors.any? %>
+<ul>
+  <% @konkurs.errors.full_messages.each do |msg| %>
+    <li class="text-danger"><%= msg %></li>
+  <% end %>
+</ul>
+<% end %>
+<%= form_for @konkurs, :html => { :multipart => true }, :html => { :class => 'form-horizontal' } do |f| %>
+  <fieldset>
+  <div class="form-group">
+    <%= f.label :ime, :class => 'col-lg-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.text_field :ime, :class => 'form-control', :id => "Input", :placeholder => "Unesite naziv konkursa" %>
+    </div>
+  </div> 
+  <div class="form-group">
+    <%= f.label "Raspisivač", :class => 'col-lg-2 control-label' %>
+    <div class="col-lg-10">
+ 	<%= f.select :raspisivac_id, @raspisivac, {}, :class => 'form-control'%>
+    </div>
+  </div> 
+  <div class="form-group">
+    <%= f.label :iznos, :class => 'col-lg-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.text_field :iznos, :class => 'form-control', :id => "Input", :placeholder => "Unesite iznos grant fonda konkursa" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label "Valuta", :class => 'col-lg-2 control-label' %>
+    <div class="col-lg-10">
+ 	<%= f.select :valuta_id, @valuta, {}, :class => 'form-control'%>
+    </div>
+  </div> 
+  <div class="form-group">
+    <%= f.label "Vrsta Konkursa", :class => 'col-lg-2 control-label' %>
+    <div class="col-lg-10">
+ 	<%= f.select :vrsta_id, @vrsta, {}, :class => "form-control" %>
+    </div>
+  </div>
+   <div class="form-group">
+    <%= f.label "Status Konkursa", :class => 'col-lg-2 control-label' %>
+    <div class="col-lg-10">
+ 	<%= f.select :status_id, @status, {}, :class => "form-control" %>
+    </div>
+  </div>      
+  <div class="form-group">
+    <%= f.label :rok, :class => 'col-lg-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.date_select :rok, {}, :class => 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :otvaranje, :class => 'col-lg-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.date_select :otvaranje, {}, :class => 'form-control' %>
+    </div>
+  </div>
+  
+  <div class="form-group"> 
+		<%= f.label "Aplikanti", :class => 'col-lg-2 control-label' %>	
+		<div class="col-lg-5"> 
+		<% Aplikant.all.each_with_index do |aplikant, index| %>
+    	<% if index == 11 %>
+    	</div>
+    	<div class="col-lg-4"> 
+    	<% end %>
+    	<label class='col-lg-2 control-label'></label>    	
+    	<div class="col-lg-10">			
+		<%= check_box_tag :aplikant_ids, aplikant.id, @konkurs.aplikants.include?(aplikant),
+		:name => 'konkurs[aplikant_ids][]'%><%= aplikant.name %>
+		</div>		
+		<% end %>
+		</div>
+  </div>   
+  
+  <div class="form-group"> 
+		<%= f.label "Sektori", :class => 'col-lg-2 control-label' %>	
+		<div class="col-lg-5"> 
+		<% Sektori.all.each_with_index do |sektor, index| %>
+    	<% if index == 11 %>
+    	</div>
+    	<div class="col-lg-4"> 
+    	<% end %>
+    	<label class='col-lg-2 control-label'></label>    	
+    	<div class="col-lg-10">			
+		<%= check_box_tag :sektor_ids, sektor.id, @konkurs.sektoris.include?(sektor),
+		:name => 'konkurs[sektor_ids][]'%><%= sektor.name %>
+		</div>		
+		<% end %>
+		</div>
+  </div> 
+  <div class="form-group">
+    <%= f.label "Dokumentacija", :class => 'col-lg-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.file_field :dokument, :class => 'btn btn-primary' %>
+    </div>
+  </div> 
+  <div class="form-group">
+    <%= f.label "Opis konkursa", :class => 'col-lg-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.text_area :opis, :class => 'form-control', :rows =>"3" %>
+    </div>
+  </div>  
+
+  <div class="form-group">
+  	<div class="col-lg-10 col-lg-offset-2">
+    <%= f.submit "Sačuvaj konkurs", :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                konkursi_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+   <fieldset>
+<% end %>

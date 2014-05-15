@@ -1,0 +1,68 @@
+<div class="row">
+<div class="col-lg-9">
+<div class="well bs-component">
+<legend>Konkurs</legend>
+
+<h3 class="text-primary"><%= @konkurs.ime %></h3>
+<%= image_tag @konkurs.raspisivac.avatar.url(:thumb) %><h4><%=@konkurs.raspisivac.name%></h4>
+<table class="table table-striped table-hover ">
+  <tbody>
+    <tr>
+      <td>Iznos granta:</td>
+      <td><%= number_with_precision(@konkurs.iznos, :precision => 2,
+				                                :separator => '.',
+				                                :delimiter => ' ') %> <%= @konkurs.valuta.name %></td>
+    </tr>
+    <tr>
+      <td>Vrsta konkursa:</td>
+      <td><%= @konkurs.vrsta.name %></td>
+    </tr>
+    <tr>
+      <td>Otvaranje konkursa:</td>
+      <td><%= @konkurs.otvaranje %></td>
+    </tr>    
+    <tr>
+      <td>Rok za podnošnje prijave:</td>
+      <td><%= @konkurs.rok %></td>
+    </tr>
+    <tr>
+      <td>Mogući aplikanti:</td>
+      <td><% @kon_ap.each do |kon_ap| %>
+		  <% aplikant = Aplikant.find(kon_ap.aplikant_id) %>
+		  <%= aplikant.name %><br />
+		  <% end %>   
+	  </td>  
+    </tr>
+    <tr>
+      <td>Teme/sektori:</td>
+      <td><% @kon_se.each do |kon_se| %>
+		  <% sektor = Sektori.find(kon_se.sektori_id) %>
+		  <%= sektor.name %><br />
+		  <% end %>   
+	  </td>  
+    </tr>    
+  </tbody>
+</table>
+<h2 id="type-blockquotes">Detaljnije:</h2>	
+       <blockquote>
+                <p><%= simple_format(@konkurs.opis) %></p>
+              </blockquote>
+
+<h4><%= link_to "Preuzmite Dokumentaciju", @konkurs.dokument.url(:original, false) %></h4>
+<% if current_user.try(:admin?) %>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              konkursi_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_konkurs_path(@konkurs), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              konkurs_path(@konkurs),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
+<%end%>
+</div>
+</div>
+<%= render 'shared/right_sidebar' %>   
+</div>

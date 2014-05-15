@@ -1,0 +1,53 @@
+<%= render 'shared/slajder' %>
+<div class="row">
+<%= render 'shared/left_sidebar' %>
+
+<div class="col-lg-5">
+<% provide(:title, 'Kontakt') %>
+<div class="well bs-component">
+<h1>Kontakt</h1>
+<%= form_tag send_mail_path, :onsubmit => 'return validateForm();', :class => 'form-horizontal',
+                          :name => 'myForm' do -%>
+  <fieldset>
+  <div class="form-group">
+  	
+  <%= label_tag(:email, "Email", class: "col-lg-2 control-label") %>
+  <div class="col-lg-10">
+  <%= text_field_tag(:email, nil, placeholder: 'Email na koji želite da dobijete odgovor', class: "form-control") %>
+  </div>
+  </div>
+  <div class="form-group">
+    <%= label_tag(:opis, "Pitanje:", class: 'col-lg-2 control-label')  %>
+    <div class="col-lg-10">
+      <%= text_area_tag(:opis, nil, class: 'form-control', rows: "6") %>
+    </div>
+  </div>
+  <div class="form-group">
+  	<div class="col-lg-10 col-lg-offset-2">
+    <%= submit_tag("Pošalji", class: "btn btn-primary")%>
+    </div>
+  </div>
+<% end %>
+</div>
+</div>
+<%= render 'shared/right_sidebar' %>   
+</div>  
+
+<script>
+function validateForm()
+{
+var x=document.forms["myForm"]["email"].value;
+var atpos=x.indexOf("@");
+var dotpos=x.lastIndexOf(".");
+var y=document.forms["myForm"]["opis"].value;
+if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length)
+  {
+  alert("Neispravna e-mail adresa.");
+  return false;
+  }
+else if (y == ""){
+	alert("Polje Pitanje mora biti popunjeno");
+	return false;
+}  
+}
+</script>

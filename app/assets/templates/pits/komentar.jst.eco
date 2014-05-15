@@ -1,0 +1,3 @@
+<span class="badge">14</span>
+Pitanje: <%= @komentar.get('name') %><br />
+Pitanje: <%= @komentar.get('user_email') %><br />

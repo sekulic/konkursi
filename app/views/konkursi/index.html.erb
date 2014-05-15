@@ -1,0 +1,54 @@
+<div class="row">
+<%= render 'shared/left_sidebar_admin' %>
+<div class="col-lg-9">
+<div class="well bs-component">	
+<%- model_class = Konkurs -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:ime) %></th>
+      <th><%= model_class.human_attribute_name(:iznos) %></th>
+      <th><%= model_class.human_attribute_name(:rok) %></th>
+      <th><%= model_class.human_attribute_name(:otvaranje) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <% if current_user.try(:admin?) %>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @konkursi.each do |konkurs| %>
+      <tr>
+        <td><%= link_to konkurs.id, konkurs_path(konkurs) %></td>
+        <td><%= konkurs.ime %></td>
+        <td><%= konkurs.iznos %></td>
+        <td><%= konkurs.rok %></td>
+        <td><%= konkurs.otvaranje %></td>
+        <td><%=l konkurs.created_at %></td>
+        <% if current_user.try(:admin?) %>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_konkurs_path(konkurs), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      konkurs_path(konkurs),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+        <% end %> 
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+		<% if current_user.try(:admin?) %>
+		<%= link_to t('.new', :default => t("helpers.links.new")),
+		            new_konkurs_path,
+		            :class => 'btn btn-primary' %>
+    	<% end %>  
+</div>    	         
+</div>
+</div>

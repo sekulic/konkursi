@@ -1,0 +1,31 @@
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">PrOjEkTi.rS</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="<%=is_active_page?(root_path)%>"><%= link_to "Početna", root_path %></li>
+            <% if current_user.try(:admin?) %>
+            <li class="<%=is_active_page?(all_users_path)%>"><%= link_to "Administracija", all_users_path %></li>
+            <% else %>
+            <li class="<%=is_active_page?(new_user_registration_path)%>"><%= link_to "Registrujte se", new_user_registration_path %></li>
+            <% end %>
+            <li class="<%=is_active_page?(kontakt_path)%>"><%= link_to "Kontakt", kontakt_path %></li>
+            <li class="<%=is_active_page?(forum_path)%>"><%= link_to "Diskusije", forum_path %></li>            
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><% if user_signed_in? %>
+            	<%= link_to "Izlogujte se", destroy_user_session_path, :method => :delete %>
+            	<%else%> 
+            	<%= link_to "Ulogujte se", new_user_session_path%>
+            	<%end%></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
