@@ -1,16 +1,40 @@
-<h2>Change your password</h2>
+<%= render 'shared/slajder' %>
+<div class="row">
+<%= render 'shared/left_sidebar' %>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+<div class="col-lg-5">
+<div class="well bs-component">
+<legend>Promenite vašu lozinku.</legend>
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), method: :put, html: { class: "form-horizontal" }) do |f| %>
   <%= devise_error_messages! %>
   <%= f.hidden_field :reset_password_token %>
 
-  <div><%= f.label :password, "New password" %><br />
-    <%= f.password_field :password, autofocus: true, autocomplete: "off" %></div>
 
-  <div><%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+  <div class="form-group">
+  	<%= f.label :password, "Nova lozinka", :class => 'col-lg-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.password_field :password, autofocus: true, autocomplete: "off", :class => 'form-control' %>
+    </div>
+  </div>
 
-  <div><%= f.submit "Change my password" %></div>
+
+  <div class="form-group">
+  	<%= f.label :password_confirmation, "Potvrdite novu lozinku", :class => 'col-lg-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.password_field :password_confirmation, autocomplete: "off", autofocus: true, :class => 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+  <div class="col-lg-10 col-lg-offset-2">
+  <%= f.submit "Promeni", :class => 'btn btn-primary' %>
+  </div>
+  </div>
+  <%= render "users/shared/links" %>
 <% end %>
 
-<%= render "users/shared/links" %>
+</div>
+</div>
+<%= render 'shared/right_sidebar' %>   
+</div>

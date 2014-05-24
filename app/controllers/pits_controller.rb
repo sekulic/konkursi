@@ -20,7 +20,7 @@ class PitsController < ApplicationController
   end
 
   def destroy
-    respond_with Pit.destroy(params[:id])
+
   end
 
   private

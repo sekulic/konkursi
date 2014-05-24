@@ -1,6 +1,6 @@
-    	<div class="row">
-        <div class="col-lg-12">
-        	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+<div class="row">
+<div class="col-lg-12">
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
     <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -12,25 +12,84 @@
   <div class="carousel-inner">
     <div class="item active">
      <%=image_tag("workers.jpg", alt: "Edit Entry")%>
+    <a href="/konkursi">
       <div class="carousel-caption">
-    <h3>Bilo sta</h3>
-    <p>Nesto bzvz</p>
+      	<div class="row">
+        <div class="col-lg-2">
+        </div>
+        <div class="col-lg-8">
+        	<h1 class="text-primary pozadina-slajder">Pronadjite konkurs za vas.</h1>
+        </div>
+        <div class="col-lg-2">
+        </div>
+        </div>		
+
+      	<div class="row">
+        <div class="col-lg-5">
+        </div>
+        <div class="col-lg-2">
+        	<p class="text-danger pozadina-slajder">Svi konkursi</p>
+        </div>
+        <div class="col-lg-5">
+        </div>
+        </div>	
       </div>
-    </div>
-    <div class="item">
-     <%=image_tag("management.jpg")%>
-      <div class="carousel-caption">
-    <h3 class="text-primary">Bilo sta</h3>
-    <p>Nesto bzvz</p>
-      </div>
+	</a>	    
     </div>
     <div class="item">
      <%=image_tag("project.jpg", alt: "Edit Entry")%>
+    <a href="/forum">
       <div class="carousel-caption">
-    <h3>Bilo sta</h3>
-    <p>Nesto bzvz</p>
+      	<div class="row">
+        <div class="col-lg-1">
+        </div>
+        <div class="col-lg-10">
+        	<h1 class="text-primary pozadina-slajder">Postavite, odgovorite na pitanje.</h1>
+        </div>
+        <div class="col-lg-1">
+        </div>
+        </div>		
+
+      	<div class="row">
+        <div class="col-lg-5">
+        </div>
+        <div class="col-lg-2">
+        	<p class="text-danger pozadina-slajder">DISKUSIJE</p>
+        </div>
+        <div class="col-lg-5">
+        </div>
+        </div>	
       </div>
-    </div>    
+	</a>
+    </div> 
+    <div class="item">
+     <%=image_tag("management.jpg")%>
+      <div class="carousel-caption">
+    <a href="/kontakt">
+      <div class="carousel-caption">
+      	<div class="row">
+        <div class="col-lg-1">
+        </div>
+        <div class="col-lg-11">
+        	<h1 class="text-primary pozadina-slajder">Vaši predlozi, sugestije</h1>
+        </div>
+        <div class="col-lg-0">
+        </div>
+        </div>		
+
+      	<div class="row">
+        <div class="col-lg-5">
+        </div>
+        <div class="col-lg-2">
+        	<p class="text-danger pozadina-slajder">KONTAKT</p>
+        </div>
+        <div class="col-lg-5">
+        </div>
+        </div>	
+      </div>
+	</a>
+      </div>
+    </div>       
   </div>
 
   <!-- Controls -->
@@ -41,6 +100,24 @@
     <span class="glyphicon glyphicon-chevron-right"></span>
   </a>
 </div>
-
-        	</div>
-        	</div>
+</div>
+</div>
+<div class="row prostor">
+</div>
+<% if alert %>       
+<div class="row">
+<div class="col-lg-12">
+<div class="alert alert-dismissable alert-danger">
+  <center><h4><%= alert %></h4></center>
+</div>
+</div>
+</div>       
+<% elsif notice %>
+<div class="row">
+<div class="col-lg-12">
+<div class="alert alert-dismissable alert-success">
+  <center><h4><%= notice %></h4></center>
+</div>
+</div>
+</div>       
+<% end %>

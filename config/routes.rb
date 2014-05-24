@@ -12,9 +12,12 @@ Projekti::Application.routes.draw do
   resources :raspisivacs
 
   resources :konkursi
+  resources :pitanja  
   root to: "static_pages#home"
   get '/forum/' => "static_pages#pitanja"
   get "kontakt" => "static_pages#contact"  
+  post 'search' => 'konkursi#search'
+  get 'search' => 'konkursi#search'  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -26,6 +29,7 @@ Projekti::Application.routes.draw do
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   get 'all_users' => 'korisnik#index'
+  #get 'pitanja' => 'pitanja#index'
   match '/send_mail', to: 'static_pages#send_mail', via: 'post'
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products

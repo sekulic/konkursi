@@ -1,14 +1,129 @@
-         <div class="col-lg-3">
-        	<div class="panel panel-primary">
-  			<div class="panel-heading">
-    		<h1 class="panel-title">O NAMA</h1>
-  			</div>
-  			<div class="panel-body">
-			<p class="text-primary">Portal Projekti.rs ima za cilj razvoj preduzetništva i povećanje korištenja EU fondova u Srbiji.</p>
-			<p class="text-warning">Takodje Projekti.rs ima za cilj da poveća korištenja drugih dostupnih fondova za vaše projekte.</p>
-			<p class="text-danger">Ovde možete pronaći konkurse koje raspisuje EU kao i konkurse iz zemlje.</p>
-			<p class="text-success">Veliki procenat dostunih fondova ostaje neiskorišćen zbog nedovoljne informisanosti o dostupnosti fondova i postojećim izvorima finansiranja..</p>
-			<p class="text-info">Mi ćemo pokušati da vam pružimo relevantne inforacije o dostupnim fondovima i procedurama apliciranja.</p>
-  			</div>
-			</div>
-        </div>
+<div class="col-lg-3">
+<div class="jumbotron" style="padding: 1px 5px 5px 5px;">
+	<center><h3 class="text-primary">Pretraga Konkursa</h3></center>
+<div class="list-group">
+<%= form_tag search_path, :multipart => true, method: :post, :html => { :class => 'form-horizontal' } do %>
+  <fieldset>
+
+  <a class="list-group-item active formma">
+    Vrsta konkursa
+  </a>
+  <a class="list-group-item">
+
+		<% Vrste.all.each_with_index do |vrsta| %>
+		<div class="row">
+		<div class="col-lg-10">
+    	<label><%= vrsta.name %></label>
+    	</div>		
+		<div class="col-lg-2">
+    	<label align ="right"><%= check_box_tag :vrsta_ids, vrsta.id, false, :name => 'konkurs[vrsta_ids][]'%></label>	
+		</div>
+		</div>
+		<% end %>
+  </a>
+  <a class="list-group-item active formma">
+    Status Konkursa
+  </a>
+  <a class="list-group-item">
+
+		<% Status.all.each_with_index do |status| %>
+		<div class="row">
+		<div class="col-lg-10">
+    	<label><%= status.name %></label>
+    	</div>		
+		<div class="col-lg-2">
+    	<label align ="right"><%= check_box_tag :status_ids, status.id, false, :name => 'konkurs[status_ids][]'%></label>	
+		</div>
+		</div>
+		<% end %>
+  </a>
+  <a class="list-group-item active formma">
+     Raspisivač
+  </a>   
+  <a class="list-group-item">
+
+		<% Raspisivac.all.each_with_index do |raspisivac| %>
+		<div class="row">
+		<div class="col-lg-10">
+    	<label><%= raspisivac.name %></label>
+    	</div>		
+		<div class="col-lg-2">
+    	<label align ="right"><%= check_box_tag :raspisivac_ids, raspisivac.id, false, :name => 'konkurs[raspisivac_ids][]'%></label>	
+		</div>
+		</div>
+		<% end %>
+  </a> 
+  <a class="list-group-item active formma" id="show_hide">
+  <span class="badge" id="bedz">&#x25BC;</span>
+     Aplikant
+  </a>   
+  <a class="list-group-item" id="show_content">
+
+		<% Aplikant.all.each_with_index do |aplikant| %>
+		<div class="row">
+		<div class="col-lg-10">
+    	<label><%= aplikant.name %></label>
+    	</div>		
+		<div class="col-lg-2">
+    	<label align ="right"><%= check_box_tag :aplikant_ids, aplikant.id, false, :name => 'konkurs[aplikant_ids][]'%></label>	
+		</div>
+		</div>
+		<% end %>
+  </a> 
+  <a class="list-group-item active formma" id="show_hide2">
+  <span class="badge" id="bedz2">&#x25BC;</span>	
+     Sektori
+  </a>   
+  <a class="list-group-item" id="show_content2">
+
+		<% Sektori.all.each_with_index do |sektor| %>
+		<div class="row">
+		<div class="col-lg-10">
+    	<label><%= sektor.name %></label>
+    	</div>		
+		<div class="col-lg-2">
+    	<label align ="right"><%= check_box_tag :sektor_ids, sektor.id, false, :name => 'konkurs[sektor_ids][]'%></label>	
+		</div>
+		</div>
+		<% end %>
+  </a>       
+
+
+<a class="list-group-item">
+    <%= submit_tag "PRETRAŽI", :class => 'btn btn-warning' %>
+</a>
+   <fieldset>
+<% end %>
+</div>
+</div>
+</div>
+<script>
+$(document).ready(function(){
+  $("#show_hide").click(function(){
+    $("#show_content").toggle(250);
+    var rade = $("#bedz").html();
+    if(rade == "▼"){
+    	var status="&#x25B2;"
+    }
+    else {
+    	var status="&#x25BC;"
+    }	 
+    $("#bedz").empty();
+    $("#bedz").append(status); 
+  });
+});
+$(document).ready(function(){
+  $("#show_hide2").click(function(){
+    $("#show_content2").toggle(250);
+    var rade = $("#bedz2").html();
+    if(rade == "▼"){
+    	var status="&#x25B2;"
+    }
+    else {
+    	var status="&#x25BC;"
+    }	 
+    $("#bedz2").empty();
+    $("#bedz2").append(status);   
+  });
+});
+</script>

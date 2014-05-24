@@ -1,12 +1,28 @@
-<h2>Forgot your password?</h2>
+<%= render 'shared/slajder' %>
+<div class="row">
+<%= render 'shared/left_sidebar' %>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+<div class="col-lg-5">
+<div class="well bs-component">
+<legend>Unesite e-mail adresu sa kojom ste se registrovali kako bi Vam poslali lozinku.</legend>
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), method: :post, html: { class: "form-horizontal" }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
-
-  <div><%= f.submit "Send me reset password instructions" %></div>
+  <div class="form-group">
+  	<%= f.label :email, :class => 'col-lg-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.email_field :email, autofocus: true, :class => 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+  <div class="col-lg-10 col-lg-offset-2">
+  <%= f.submit "Pošalji", :class => 'btn btn-primary' %>
+  </div>
+  </div>
+  <%= render "users/shared/links" %>
 <% end %>
-
-<%= render "users/shared/links" %>
+</div>
+</div>
+<%= render 'shared/right_sidebar' %>   
+</div>

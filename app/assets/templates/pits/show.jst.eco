@@ -1,6 +1,8 @@
 <div class="well bs-component">
 <form id="form_komentar" class="form-horizontal">
-<legend>Komentari</legend>
+<legend><%= @pitanje.get('name') %></legend>
+<p class="text-danger">Pitanje postavio:&nbsp;<u><%= @pitanje.get('user_name') %></u></p>
+
     <div class="form-group">
       <label for="textArea" class="col-lg-2 control-label">Postavi Komentar</label>
       <div class="col-lg-10">
@@ -13,7 +15,7 @@
       </div>
     </div>
 </form>
-<h3><%= @pitanje.get('name') %></h3>
+<h3>Komentari</h3>
 <ul id="lista_komentara" class="list-group">
 </ul>
 <center>

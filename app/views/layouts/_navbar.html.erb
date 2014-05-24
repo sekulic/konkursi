@@ -6,18 +6,23 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">PrOjEkTi.rS</a>
+          <%= link_to "PrOjEkTi.rS", root_path, :class => "navbar-brand" %>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="<%=is_active_page?(root_path)%>"><%= link_to "Početna", root_path %></li>
-            <% if current_user.try(:admin?) %>
-            <li class="<%=is_active_page?(all_users_path)%>"><%= link_to "Administracija", all_users_path %></li>
+            <li class="<%=is_active_page?(konkursi_path)%>"><%= link_to "Konkursi", konkursi_path %></li>
+            <li class="<%=is_active_page?(forum_path)%>"><%= link_to "Diskusije", forum_path %></li>
+            <% if user_signed_in? %>
+            <li class="<%=is_active_page?(edit_user_registration_path)%>"><%= link_to "Moj nalog", edit_user_registration_path %></li>
             <% else %>
             <li class="<%=is_active_page?(new_user_registration_path)%>"><%= link_to "Registrujte se", new_user_registration_path %></li>
             <% end %>
             <li class="<%=is_active_page?(kontakt_path)%>"><%= link_to "Kontakt", kontakt_path %></li>
-            <li class="<%=is_active_page?(forum_path)%>"><%= link_to "Diskusije", forum_path %></li>            
+            <% if current_user.try(:admin?) %>
+            <li class="<%=is_active_page?(all_users_path)%>"><%= link_to "Administracija", all_users_path %></li>
+            <% end %>            
+                                    
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><% if user_signed_in? %>

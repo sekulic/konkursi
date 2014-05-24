@@ -17,8 +17,11 @@ class Projekti.Views.PitsShow extends Backbone.View
     for i in [pocetak...this.options.kolekcija.length]
       komentar = this.options.kolekcija.models[i]
       rade = this.options.kolekcijica.findWhere({id: komentar.get('user_id')})
-      user_email= rade.get('email')
-      komentar.set({user_email: user_email});      
+      if rade?
+        user_name= rade.get('username')
+      else
+        user_name = "Korisnik nije više aktivan"
+      komentar.set({user_name: user_name});      
       view = new Projekti.Views.Komentar({ model: komentar })
       @$('#lista_komentara').prepend(view.render().el)    
     this
@@ -38,8 +41,8 @@ class Projekti.Views.PitsShow extends Backbone.View
         
   prikaziKomentar: (komentar) =>
     rade = this.options.kolekcijica.findWhere({id: komentar.get('user_id')})
-    user_email= rade.get('email')
-    komentar.set({user_email: user_email});
+    user_name= rade.get('username')
+    komentar.set({user_name: user_name});
     view = new Projekti.Views.Komentar({ model: komentar })
     @$('#lista_komentara').prepend(view.render().el)
         
@@ -78,8 +81,11 @@ class Projekti.Views.PitsShow extends Backbone.View
     for i in [pocetak...kraj]
       komentar = this.options.kolekcija.models[i]
       rade = this.options.kolekcijica.findWhere({id: komentar.get('user_id')})
-      user_email= rade.get('email')
-      komentar.set({user_email: user_email});      
+      if rade?
+        user_name= rade.get('username')
+      else
+        user_name = "Korisnik nije više aktivan"
+      komentar.set({user_email: user_name});      
       view = new Projekti.Views.Komentar({ model: komentar })
       @$('#lista_komentara').prepend(view.render().el)
     this

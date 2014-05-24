@@ -1,3 +1,3 @@
-<span class="badge">14</span>
-Pitanje: <%= @pitanje.get('name') %><br />
-Pitanje postavio: <%= @pitanje.get('user_email') %>
+<span class="badge"><%= @pitanje.get('br_kom') %></span>
+<p class="text-primary">Pitanje: <h4><%= @pitanje.get('name') %></h4></p>
+<p class="text-danger">Pitanje postavio:&nbsp;<u><%= @pitanje.get('user_name') %></u></p>

@@ -18,7 +18,10 @@
 </ul>
 </div>
   <li class="list-group-item" id="header-of-table-home">
-  	<h5><%= link_to "Svi aktuelni konkursi", "#" %></h5>
+<%= form_tag search_path, :multipart => true, method: :post, :html => { :class => 'form-horizontal' } do %>
+<%= check_box_tag :status_ids, 1, true, :name => 'konkurs[status_ids][]', :style => 'visibility: hidden'%>
+<%= submit_tag "SVI AKTUELNI KONKURSI", :class => 'btn btn-warning' %> 
+<% end %>
   </li>
  <br /> 
   <li class="list-group-item" id="header-of-table-home">
@@ -35,8 +38,11 @@
 </ul>
 </div>
   <li class="list-group-item" id="header-of-table-home">
-  	<h5><%= link_to "Svi najavljeni konkursi", "#" %></h5>
+<%= form_tag search_path, :multipart => true, method: :post, :html => { :class => 'form-horizontal' } do %>
+<%= check_box_tag :status_ids, 2, true, :name => 'konkurs[status_ids][]', :style => 'visibility: hidden'%>
+<%= submit_tag "SVI NAJAVLJENI KONKURSI", :class => 'btn btn-warning' %> 
+<% end %> 	
   </li>
 </div>
-<%= render 'shared/right_sidebar' %>   
+<%= render 'shared/right_sidebar' %>    
 </div>       

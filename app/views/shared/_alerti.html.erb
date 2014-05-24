@@ -1,0 +1,20 @@
+<div class="row administracija">
+
+</div> 
+<% if alert %>       
+<div class="row">
+<div class="col-lg-12">
+<div class="alert alert-dismissable alert-danger">
+  <center><h4><%= alert %></h4></center>
+</div>
+</div>
+</div>       
+<% elsif notice %>
+<div class="row">
+<div class="col-lg-12">
+<div class="alert alert-dismissable alert-success">
+  <center><h4><%= notice %></h4></center>
+</div>
+</div>
+</div>       
+<% end %>

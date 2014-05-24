@@ -2,7 +2,7 @@ class Projekti.Views.Pitanje extends Backbone.View
 
   template: JST['pits/pitanje']
   tagName: 'li'
-  className: 'list-group-item'    
+  className: 'list-group-item finger'    
   events:
     'click': 'prikaziPitanje'  
     

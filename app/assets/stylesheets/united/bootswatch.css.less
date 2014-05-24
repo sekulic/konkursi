@@ -5,7 +5,55 @@
 // -----------------------------------------------------
 
 @import url("//fonts.googleapis.com/css?family=Ubuntu");
-body { padding-top: 32px; } 
+body { padding-top: 52px; }
+.prostor {
+  height: 2px;
+} 
+.nav-tabs {
+  border-bottom: 1px solid @brand-primary;
+}
+.nav-tabs > li > a:hover {
+  border-color: @brand-primary @brand-primary @brand-primary;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  color: #777777;
+  background-color: #f5f5f5 !important;
+  border: 1px solid @brand-primary;
+  border-bottom-color: transparent;
+  cursor: default;
+  outline: 4px solid transparent;
+}
+.pozadina-slajder {
+  background: white;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -khtml-border-radius: 8px;
+  border-radius: 8px;
+}
+#show_hide {
+  cursor:pointer;
+}
+#show_hide2 {
+  cursor:pointer;
+}
+.finger {
+  cursor:pointer;
+}
+.administracija {
+  height: 0px;
+}
+.dugmic {
+  float: right;
+}
+#show_content { display:none; }
+#show_content2 { display:none; }
+.formma {
+border-bottom-style: solid;
+border-bottom-color: black !important;
+border-bottom-width: 2px;
+}
 .scroll-text {
   height: 13.5em;
   overflow: hidden;

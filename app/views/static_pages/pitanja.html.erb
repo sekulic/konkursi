@@ -1,3 +1,5 @@
+<%= render 'shared/alerti' %>
+<div class="col-lg-9">
 <% if user_signed_in? %>
 <%= content_tag 'div', 'loading ... ', id: "sadrzaj", data: {pitanja: Pit.all} %>
 <%= content_tag 'div', '', id: "korisnici", data: {korisnici: User.all} %>
@@ -9,3 +11,5 @@
 <h4><%= link_to "Registrujte se", new_user_registration_path, :class=>"text-success" %></h4>
 </div>
 <% end %>
+</div>
+<%= render 'shared/right_sidebar_forum' %>

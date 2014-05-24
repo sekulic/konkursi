@@ -4,6 +4,14 @@
 # Examples:
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
+Vrste.create(name: 'Bespovratna sredstva')
+Vrste.create(name: 'Javna nabavka - proizvodi')
+Vrste.create(name: 'Javna nabavka - usluge')
+Vrste.create(name: 'Javna nabavka - radovi')
+Status.create(name: 'Aktuelan konkurs')
+Status.create(name: 'Konkurs u najavi')
+Valuta.create(name: 'EUR')
+Valuta.create(name: 'RSD')
 Sektori.create(name: 'Životna sredina')
 Sektori.create(name: 'Mladi')
 Sektori.create(name: 'Informacione i komunikacione tehnologije')

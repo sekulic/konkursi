@@ -20,7 +20,16 @@ class KomentarsController < ApplicationController
   end
 
   def destroy
-    respond_with Komentar.destroy(params[:id])
+      if current_user.try(:admin?) 
+        @komentar = Komentar.find(params[:id])
+        @komentar.destroy
+        respond_to do |format|
+          format.html { redirect_to pitanja_index_path }
+          format.json { head :no_content }
+        end
+      else
+       redirect_to root_path  
+      end 
   end
 
   private

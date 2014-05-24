@@ -1,6 +1,8 @@
 Projekti::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-
+ENV['S3_BUCKET_NAME'] ='konkursi'
+ENV['AWS_ACCESS_KEY_ID'] ='AKIAJ62K2UPMM63PM7TA'
+ENV['AWS_SECRET_ACCESS_KEY'] ='eMJfXD7c0BNoU0YLZXty0UTiwhp9ZiVw9dqt5UjD'
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
@@ -8,6 +10,14 @@ Projekti::Application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
 
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => ENV['S3_BUCKET_NAME'],
+      :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+    }
+  }
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
@@ -21,8 +31,8 @@ Projekti::Application.configure do
   :address              => 'smtp.gmail.com',
   :port                 => 587,
   :domain               => 'gmail.com',
-  :user_name            => 'sekulic87@gmail.com',
-  :password             => 'dragica86',
+  :user_name            => 'projekti.rs@gmail.com',
+  :password             => 'milena678',
   :authentication       => 'login',
   :enable_starttls_auto => true
   }

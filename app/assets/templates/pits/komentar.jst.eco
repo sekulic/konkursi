@@ -1,3 +1,2 @@
-<span class="badge">14</span>
-Pitanje: <%= @komentar.get('name') %><br />
-Pitanje: <%= @komentar.get('user_email') %><br />
+<p class="text-primary">Komentar: <h4><%= @komentar.get('name') %></h4></p>
+<p class="text-danger">Komentar postavio:&nbsp;<u><%= @komentar.get('user_name') %></u></p>

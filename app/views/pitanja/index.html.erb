@@ -1,0 +1,35 @@
+<%= render 'shared/alerti' %>
+<div class="row">
+<%= render 'shared/left_sidebar_admin' %>
+<div class="col-lg-9">
+<div class="apple_pagination">
+<%= will_paginate @pitanja %>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>PITANJE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @pitanja.each do |pitanje| %>
+      <tr>
+        <td><%= pitanje.id %></td>
+        <td><%= link_to pitanje.name, pitanja_path(pitanje) %></td>
+        <td>	
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      pitanja_path(pitanje),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Da li ste sigurni?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="apple_pagination">
+<%= will_paginate @pitanja %>
+</div>
+</div>
+</div>

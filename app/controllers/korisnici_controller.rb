@@ -1,16 +1,12 @@
 class KorisniciController < ApplicationController
   respond_to :json
   
-  def index
-   if current_user.try(:admin?)    
-    respond_with User.all
-   else
-     redirect_to root_path  
-   end 
+  def index    
+    respond_with User.all 
   end
 
   def show
-    respond_with User.find(params[:id])
+
   end
   
   def create
@@ -22,6 +18,15 @@ class KorisniciController < ApplicationController
   end
 
   def destroy
-    
+    if current_user.try(:admin?) 
+      @korisnik = User.find(params[:id])
+      @korisnik.destroy
+      respond_to do |format|
+        format.html { redirect_to all_users_path }
+        format.json { head :no_content }
+      end
+    else
+     redirect_to root_path  
+    end 
   end
 end

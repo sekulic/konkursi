@@ -9,8 +9,7 @@ class Projekti.Views.PitsIndex extends Backbone.View
   initialize: (options) ->
     this.options = options || {}
     this.options.collection2.on('reset', @render, this)
-    this.options.collection2.on('add', @izlistajPitanja, this) 
-     
+    this.options.collection2.on('add', @izlistajPitanja, this)         
   render: ->
     $(@el).html(@template())
     parPage = 6
@@ -18,9 +17,14 @@ class Projekti.Views.PitsIndex extends Backbone.View
     pocetak = 0 if pocetak < 0
     for i in [pocetak...this.options.collection2.length]
       pitanje = this.options.collection2.models[i]
+      kol_kom = this.options.collection3.where({pit_id: pitanje.get('id')})
+      br_kom = kol_kom.length 
       rade = @collection.findWhere({id: pitanje.get('user_id')})
-      user_email= rade.get('email')
-      pitanje.set({user_email: user_email});
+      if rade?
+        user_name= rade.get('username')
+      else
+        user_name = "Korisnik nije više aktivan"
+      pitanje.set({user_name: user_name, br_kom: br_kom});
       view = new Projekti.Views.Pitanje({ model: pitanje })
       @$('#lista_pitanja').prepend(view.render().el)
     this
@@ -47,8 +51,9 @@ class Projekti.Views.PitsIndex extends Backbone.View
 
   izlistajPitanja: (pitanje) =>
     rade = @collection.findWhere({id: pitanje.get('user_id')})
-    user_email= rade.get('email')
-    pitanje.set({user_email: user_email});
+    br_kom = 0
+    user_name= rade.get('username')
+    pitanje.set({user_name: user_name, br_kom: br_kom});
     view = new Projekti.Views.Pitanje({ model: pitanje })
     @$('#lista_pitanja').prepend(view.render().el)    
 
@@ -78,9 +83,14 @@ class Projekti.Views.PitsIndex extends Backbone.View
       kraj = pocetak + parPage
     for i in [pocetak...kraj]
       pitanje = this.options.collection2.models[i]
+      kol_kom = this.options.collection3.where({pit_id: pitanje.get('id')})
+      br_kom = kol_kom.length 
       rade = @collection.findWhere({id: pitanje.get('user_id')})
-      user_email= rade.get('email')
-      pitanje.set({user_email: user_email});
+      if rade?
+        user_name= rade.get('username')
+      else
+        user_name = "Korisnik nije više aktivan"
+      pitanje.set({user_name: user_name, br_kom: br_kom});
       view = new Projekti.Views.Pitanje({ model: pitanje })
       @$('#lista_pitanja').prepend(view.render().el)
     this

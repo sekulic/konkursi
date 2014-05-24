@@ -9,7 +9,9 @@ class Konkurs < ActiveRecord::Base
   has_many :aplikant_konkursi, :dependent => :destroy
   has_many :aplikants, :through => :aplikant_konkursi
   accepts_nested_attributes_for :aplikants
-  has_attached_file :dokument
+  has_attached_file :dokument,
+                    :path => "/dokumenti/:id/dokument:id.:extension",
+                    :url => ":s3_domain_url"
 # Validate content type
   validates_attachment_content_type :dokument, :content_type => /\Aapplication/
 # Validate filename

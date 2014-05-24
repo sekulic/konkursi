@@ -90,8 +90,8 @@ sr:
     attributes:
         user:
             email: "Email"
-            password: "Šifra"
-            password_confirmation: "Potvrda šifre" 
+            password: "Lozinka"
+            password_confirmation: "Potvrda lozinke" 
             remember_me: "zapamti me"   
     errors:
       template:
