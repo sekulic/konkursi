@@ -26,6 +26,20 @@ Projekti::Application.configure do
       :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
     }
   }
+
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = { host: 'http://polar-spire-7529.herokuapp.com' }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  :address              => 'smtp.gmail.com',
+  :port                 => 587,
+  :domain               => 'gmail.com',
+  :user_name            => 'projekti.rs@gmail.com',
+  :password             => 'milena678',
+  :authentication       => 'login',
+  :enable_starttls_auto => true
+  }
   # Disable Rails's static asset server (Apache or nginx will already do this).
   config.serve_static_assets = false
 
