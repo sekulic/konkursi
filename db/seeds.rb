@@ -4,7 +4,7 @@
 # Examples:
 #
 #   cities = City.find_or_create_by_name([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-User.create(:email => 'sekulic.radosav@yahoo.com', :password => 'foobar123', :password_confirmation => 'foobar123', :username => 'ADMIN', :admin => true)
+User.find_or_create_by_email(:email => 'sekulic.radosav@yahoo.com', :password => 'foobar123', :password_confirmation => 'foobar123', :username => 'ADMIN', :admin => true)
 Vrste.find_or_create_by_name(name: 'Bespovratna sredstva')
 Vrste.find_or_create_by_name(name: 'Javna nabavka - proizvodi')
 Vrste.find_or_create_by_name(name: 'Javna nabavka - usluge')

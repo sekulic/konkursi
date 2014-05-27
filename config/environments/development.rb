@@ -1,8 +1,6 @@
 Projekti::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-ENV['S3_BUCKET_NAME'] ='konkursi'
-ENV['AWS_ACCESS_KEY_ID'] ='AKIAJ62K2UPMM63PM7TA'
-ENV['AWS_SECRET_ACCESS_KEY'] ='eMJfXD7c0BNoU0YLZXty0UTiwhp9ZiVw9dqt5UjD'
+
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
