@@ -1,5 +1,5 @@
 class KontaktMailer < ActionMailer::Base
-  default from: 'sekulic87@gmail.com'
+  default from: 'projekti.in.rs@gmail.com'
     def contact_email(email, opis)
     rade ="sekulic.radosav@yahoo.com"
     mail(to: rade,
