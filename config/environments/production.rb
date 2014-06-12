@@ -35,8 +35,8 @@ Projekti::Application.configure do
   :address              => 'smtp.gmail.com',
   :port                 => 587,
   :domain               => 'gmail.com',
-  :user_name            => 'projekti.rs@gmail.com',
-  :password             => 'milena678',
+  :user_name            => 'projekti.in.rs@gmail.com',
+  :password             => 'projekti678',
   :authentication       => 'login',
   :enable_starttls_auto => true
   }

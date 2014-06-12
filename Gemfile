@@ -36,12 +36,20 @@ end
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-gem "rspec-rails", :group => [:test, :development]
-group :test do
+
+group :development, :test do
+  gem "rspec-rails"
   gem "factory_girl_rails"
-  gem "capybara"
-  gem "guard-rspec"
 end
+
+group :test do
+  gem 'faker'
+  gem 'capybara'
+  gem 'guard-rspec'
+  gem 'launchy'
+end
+
+
 # Use unicorn as the app server
 # gem 'unicorn'
 gem "paperclip", github: 'thoughtbot/paperclip'

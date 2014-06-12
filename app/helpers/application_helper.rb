@@ -14,7 +14,7 @@ module ApplicationHelper
     end
   end  
   def full_title(page_title)
-    title = "Projekti.rs"
+    title = "Projekti.in.rs"
     if page_title == ""
     title
     else

@@ -13,9 +13,9 @@ describe "StaticPages" do
   end    
   it "Should have right links on layout" do
     visit root_path
-    click_link "Kontakt"
+    click_link("Kontakt", match: :first)
     expect(page).to have_selector("h1", text: "Kontakt")
-    click_link "Registrujte se"
+    click_link("Registrujte se", match: :first)
     expect(page).to have_selector("legend", text: "Registrujte se")
   end
 end
