@@ -16,7 +16,7 @@ class Konkurs < ActiveRecord::Base
   validates_attachment_content_type :dokument, :content_type => /\Aapplication/
 # Validate filename
   validates_attachment_file_name :dokument, :matches => [/zip\Z/, /rar\Z/]
-  validates :ime, presence: true
+  validates :ime, presence: true, length: { minimum: 5 }
   validates :iznos, presence: true, format: { without: /\s/ }, numericality: true
   validates :opis, presence: true
 end

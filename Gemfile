@@ -47,9 +47,11 @@ group :test do
   gem 'capybara'
   gem 'guard-rspec'
   gem 'launchy'
+  gem 'shoulda-matchers'  
+  gem 'selenium-webdriver'  
 end
 
-
+gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 # Use unicorn as the app server
 # gem 'unicorn'
 gem "paperclip", github: 'thoughtbot/paperclip'

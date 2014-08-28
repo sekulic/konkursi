@@ -3,14 +3,6 @@ FactoryGirl.define do
   sequence(:email) { |n| "person-#{n}@example.com" }
   sequence(:count)
 
-  factory :user do
-    name "Regular Doe"
-
-    trait(:male)   { gender "Male" }
-    trait(:female) { gender "Female" }
-    trait(:admin)  { admin  true }
-  end
-
   factory :article do
     sequence(:title) { |n| "Title #{n}" }
     comments_allowed false

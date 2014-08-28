@@ -18,6 +18,7 @@
       <td>Vrsta konkursa:</td>
       <td><%= @konkurs.vrsta.name %></td>
     </tr>
+    <% unless @konkurs.status.id == 2 %>
     <tr>
       <td>Otvaranje konkursa:</td>
       <td><%= @konkurs.otvaranje %></td>
@@ -26,6 +27,7 @@
       <td>Rok za podnošnje prijave:</td>
       <td><%= @konkurs.rok %></td>
     </tr>
+    <% end %>
     <tr>
       <td>Mogući aplikanti:</td>
       <td><% @kon_ap.each do |kon_ap| %>
