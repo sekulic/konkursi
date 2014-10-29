@@ -177,9 +177,9 @@ end
     if current_user.try(:admin?) 
       @konkurs = Konkurs.find(params[:id])
       @konkurs.destroy
-      @izbris = SektoriKonkurs.find_all_by_konkurs_id(@konkurs[:id])
-      @izbris.each do |izbris|
-      izbris.destroy
+      @sektori_konkurs = SektoriKonkurs.find_all_by_konkurs_id(@konkurs[:id])
+      @sektori_konkurs.each do |sektori_konkurs|
+      sektori_konkurs.destroy
       end
       respond_to do |format|
         format.html { redirect_to konkursi_url }
