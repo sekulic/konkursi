@@ -43,7 +43,7 @@ def search
      
           
      if konkurs.has_key?(:status_ids)
-      @svi_konkursi = konkursi_filter(konkurs[:status_ids], @svi_konkursi_vrsta)
+      @svi_konkursi = konkursi_filter(konkurs[:status_ids], @svi_konkursi)
      end
  
      if konkurs.has_key?(:raspisivac_ids)
@@ -59,7 +59,7 @@ def search
          @svi_konkursi_aplikant.push(@svi_konkursi_aplikant_model)   
        end
      else
-     @svi_konkursi_aplikant = @svi_konkursi_raspisivac
+     @svi_konkursi_aplikant = @svi_konkursi
      end
      
      @konkursi = Array.new   
