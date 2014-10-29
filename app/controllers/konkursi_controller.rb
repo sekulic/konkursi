@@ -1,5 +1,6 @@
 class KonkursiController < ApplicationController
- include ApplicationHelper 
+  include ApplicationHelper 
+  include KonkursiHelper 
   before_action :check_isadmin?, only: [:new, :edit, :update, :destroy]
   # GET /konkursi
   # GET /konkursi.json
@@ -12,38 +13,49 @@ class KonkursiController < ApplicationController
 def search
   if params[:konkurs]
      if konkurs.has_key?(:vrsta_ids)
-     @svi_konkursi_vrsta = Konkurs.find_all_by_vrsta_id(konkurs[:vrsta_ids])
+     @svi_konkursi = Konkurs.find_all_by_vrsta_id(konkurs[:vrsta_ids])
      else
-     @svi_konkursi_vrsta = Konkurs.all  
+     @svi_konkursi = Konkurs.all  
      end
      
-     @svi_konkursi_status = Array.new
+     
+#     @svi_konkursi_status = Array.new
+#     if konkurs.has_key?(:status_ids)
+#       konkurs[:status_ids].each do |status_id|
+#           @svi_konkursi_vrsta.each do |konkurs|
+#           @svi_konkursi_status.push(konkurs) if konkurs.status_id == status_id.to_i
+#           end    
+#       end
+#     else
+#     @svi_konkursi_status = @svi_konkursi_vrsta  
+#     end
+     
+#     @svi_konkursi_raspisivac = Array.new      
+#     if konkurs.has_key?(:raspisivac_ids)
+#       konkurs[:raspisivac_ids].each do |raspisivac_id|
+#         @svi_konkursi_status.each do |konkurs|
+#           @svi_konkursi_raspisivac.push(konkurs) if konkurs.raspisivac_id == raspisivac_id.to_i
+#         end    
+#       end
+#     else
+#     @svi_konkursi_raspisivac = @svi_konkursi_status  
+#     end
+     
+          
      if konkurs.has_key?(:status_ids)
-       konkurs[:status_ids].each do |status_id|
-           @svi_konkursi_vrsta.each do |konkurs|
-           @svi_konkursi_status.push(konkurs) if konkurs.status_id == status_id.to_i
-           end    
-       end
-     else
-     @svi_konkursi_status = @svi_konkursi_vrsta  
+      @svi_konkursi = konkursi_filter(konkurs[:status_ids], @svi_konkursi_vrsta)
      end
-     
-     @svi_konkursi_raspisivac = Array.new      
+ 
      if konkurs.has_key?(:raspisivac_ids)
-       konkurs[:raspisivac_ids].each do |raspisivac_id|
-         @svi_konkursi_status.each do |konkurs|
-           @svi_konkursi_raspisivac.push(konkurs) if konkurs.raspisivac_id == raspisivac_id.to_i
-         end    
-       end
-     else
-     @svi_konkursi_raspisivac = @svi_konkursi_status  
+      @svi_konkursi = konkursi_filter(konkurs[:raspisivac_ids], @svi_konkursi)
      end
+
   
      @svi_konkursi_aplikant = Array.new
      if konkurs.has_key?(:aplikant_ids)
        @upisis = AplikantKonkurs.find_all_by_aplikant_id(konkurs[:aplikant_ids]) 
        @upisis.each do |upisisi|
-         @svi_konkursi_aplikant_model = @svi_konkursi_raspisivac.find {|i| i["id"] == upisisi.konkurs_id}
+         @svi_konkursi_aplikant_model = @svi_konkursi.find {|i| i["id"] == upisisi.konkurs_id}
          @svi_konkursi_aplikant.push(@svi_konkursi_aplikant_model)   
        end
      else
