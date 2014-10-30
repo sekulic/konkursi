@@ -17,7 +17,7 @@ module KonkursiHelper
    if atribut == "aplikant"
      @aplsek_konkurs = AplikantKonkurs.find_all_by_aplikant_id(ids) 
    elsif atribut == "sektor"
-     @aplsek_konkurs = SektoriKonkurs.find_all_by_aplikant_id(ids) 
+     @aplsek_konkurs = SektoriKonkurs.find_all_by_sektor_id(ids) 
    end 
    @aplsek_konkurs.each do |aplsek_kon|
     @konkursi_aplsek_record = konkursi.find {|i| i["id"] == aplsek_kon.konkurs_id}
