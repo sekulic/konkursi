@@ -53,15 +53,11 @@ def search
      end
 
   
-     @svi_konkursi_aplikant = Array.new
      if konkurs.has_key?(:aplikant_ids)
-       @upisis = AplikantKonkurs.find_all_by_aplikant_id(konkurs[:aplikant_ids]) 
-       @upisis.each do |upisisi|
-         @svi_konkursi_aplikant_model = @svi_konkursi.find {|i| i["id"] == upisisi.konkurs_id}
-         @svi_konkursi_aplikant.push(@svi_konkursi_aplikant_model)   
-       end
+      atribut = "aplikant" 
+      @svi_konkursi_aplikant = konkursi_filter_apl(konkurs[:aplikant_ids], @svi_konkursi, atribut)
      else
-     @svi_konkursi_aplikant = @svi_konkursi
+      @svi_konkursi_aplikant = @svi_konkursi
      end
      
      @konkursi = Array.new   
