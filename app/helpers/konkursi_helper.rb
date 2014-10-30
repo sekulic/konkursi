@@ -19,10 +19,12 @@ module KonkursiHelper
    elsif atribut == "sektor"
      @aplsek_konkurs = SektoriKonkurs.find_all_by_sektori_id(ids) 
    end 
-   @aplsek_konkurs.each do |aplsek_kon|
-    @konkursi_aplsek_record = konkursi.find {|i| i["id"] == aplsek_kon.konkurs_id}
-    @svi_konkursi_aplsek.push(@konkursi_aplsek_record)   
-   end   
+   unless @aplsek_konkurs.nil? 
+     @aplsek_konkurs.each do |aplsek_kon|
+      @konkursi_aplsek_record = konkursi.find {|i| i["id"] == aplsek_kon.konkurs_id}
+      @svi_konkursi_aplsek.push(@konkursi_aplsek_record)   
+     end  
+   end 
    return @svi_konkursi_aplsek
  end         
 end
