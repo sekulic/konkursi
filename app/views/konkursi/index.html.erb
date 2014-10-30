@@ -6,7 +6,7 @@
 <div class="well bs-component">
 <% if @konkursi.nil? %>
 <% @konkursi = Konkurs.all.paginate(:page => params[:page], :per_page => 12) %>
-<h1 class="danger">Nema rezultata vaše pretrageee</h1>
+<h1>Nema rezultata vaše pretrage</h1>
 <legend>Svi Konkursi <%= link_to t('.new', :default => t("helpers.links.new")),
 		            new_konkurs_path,
 		            :class => 'btn btn-primary dugmic' %></legend>
@@ -68,7 +68,7 @@
 <div class="well bs-component">
 <% if @konkursi.empty? %>
 <% @konkursi = Konkurs.all.paginate(:page => params[:page], :per_page => 12) %>
-<legend class="danger">Nema rezultata vaše pretrage</legend>
+<h1>Nema rezultata vaše pretrage</h1>
 <legend>Svi Konkursi</legend>
 <% else %>
 <legend>Konkursi</legend>
