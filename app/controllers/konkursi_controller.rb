@@ -74,7 +74,7 @@ def search
 #     @konkursi = @svi_konkursi
 #     end
 
-     @konkursi.uniq! { |x| x['id'] } unless @posts.empty?
+     @konkursi.uniq! { |x| x['id'] } unless @konkursi.nil?
   else   
     @konkursi = Konkurs.all
   end

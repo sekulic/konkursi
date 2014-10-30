@@ -4,7 +4,7 @@
 <%= render 'shared/left_sidebar_admin' %>
 <div class="col-lg-9">
 <div class="well bs-component">
-<% if @konkursi.empty? %>
+<% if @konkursi.nil? %>
 <% @konkursi = Konkurs.all.paginate(:page => params[:page], :per_page => 12) %>
 <legend class="danger">Nema rezultata vaše pretrage</legend>
 <legend>Svi Konkursi <%= link_to t('.new', :default => t("helpers.links.new")),
