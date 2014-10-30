@@ -3,7 +3,11 @@ module KonkursiHelper
    @svi_konkursi_filter = Array.new
    ids.each do |id|
     konkursi.each do |konkurs|
+      if atribut == "status"
       @svi_konkursi_filter.push(konkurs) if konkurs.status_id == id.to_i
+      elsif atribut == "raspisivac"
+      @svi_konkursi_filter.push(konkurs) if konkurs.raspisivac_id == id.to_i 
+      end
     end    
    end
     return @svi_konkursi_filter   

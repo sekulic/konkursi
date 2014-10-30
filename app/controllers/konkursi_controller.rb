@@ -43,13 +43,13 @@ def search
      
           
      if konkurs.has_key?(:status_ids)
-      @atribut = "status_id"
-      @svi_konkursi = konkursi_filter(konkurs[:status_ids], @svi_konkursi, @atribut)
+      atribut = "status"
+      @svi_konkursi = konkursi_filter(konkurs[:status_ids], @svi_konkursi, atribut)
      end
  
      if konkurs.has_key?(:raspisivac_ids)
-      @atribut = "raspisivac_id"       
-      @svi_konkursi = konkursi_filter(konkurs[:raspisivac_ids], @svi_konkursi, @atribut)
+      atribut = "raspisivac"       
+      @svi_konkursi = konkursi_filter(konkurs[:raspisivac_ids], @svi_konkursi, atribut)
      end
 
   
