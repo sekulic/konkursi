@@ -3,7 +3,7 @@ module KonkursiHelper
    @svi_konkursi_filter = Array.new
    ids.each do |id|
     konkursi.each do |konkurs|
-      @svi_konkursi_filter.push(konkurs) if konkurs.+atribut == id.to_i
+      @svi_konkursi_filter.push(konkurs) if "konkurs.#{atribut}".to_sym == id.to_i
     end    
    end
     return @svi_konkursi_filter   
