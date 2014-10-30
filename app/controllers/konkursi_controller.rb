@@ -55,20 +55,18 @@ def search
   
      if konkurs.has_key?(:aplikant_ids)
       atribut = "aplikant" 
-      @svi_konkursi_aplikant = konkursi_filter_apl(konkurs[:aplikant_ids], @svi_konkursi, atribut)
-     else
-      @svi_konkursi_aplikant = @svi_konkursi
+      @svi_konkursi = konkursi_filter_apl(konkurs[:aplikant_ids], @svi_konkursi, atribut)
      end
      
      @konkursi = Array.new   
      if konkurs.has_key?(:sektor_ids)
        @upiz = SektoriKonkurs.find_all_by_sektori_id(konkurs[:sektor_ids]) 
        @upiz.each do |upiz|
-         @svi_konkursi_sektor_model = @svi_konkursi_aplikant.find {|i| i["id"] == upiz.konkurs_id}
+         @svi_konkursi_sektor_model = @svi_konkursi.find {|i| i["id"] == upiz.konkurs_id}
          @konkursi.push(@svi_konkursi_sektor_model)   
        end
      else
-     @konkursi = @svi_konkursi_aplikant
+     @konkursi = @svi_konkursi
      end
      @konkursi.uniq! { |x| x['id'] }
   else   
