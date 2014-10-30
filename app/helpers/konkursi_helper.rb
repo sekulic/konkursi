@@ -20,8 +20,8 @@ module KonkursiHelper
      @aplsek_konkurs = SektoriKonkurs.find_all_by_aplikant_id(ids) 
    end 
    @aplsek_konkurs.each do |aplsek_kon|
-    @konkursi_aplsec_record = konkursi.find {|i| i["id"] == aplsek_kon.konkurs_id}
-    @svi_konkursi_aplsek.push(@konkursi_aplsec_record)   
+    @konkursi_aplsek_record = konkursi.find {|i| i["id"] == aplsek_kon.konkurs_id}
+    @svi_konkursi_aplsek.push(@konkursi_aplsek_record)   
    end   
    return @svi_konkursi_aplsek
  end         
