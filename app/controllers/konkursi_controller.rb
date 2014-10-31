@@ -124,17 +124,6 @@ class KonkursiController < ApplicationController
   end
 
   private  
-    def check_isadmin?
-       unless current_user.try(:admin?)
-         redirect_to root_path
-       end
-    end      
-    def map_all
-      @raspisivac = Raspisivac.all.map{|u| [ u.name, u.id ] }
-      @vrsta = Vrste.all.map{|u| [ u.name, u.id ] }
-      @valuta = Valuta.all.map{|u| [ u.name, u.id ] }
-      @status = Status.all.map{|u| [ u.name, u.id ] }      
-    end
     def konkurs_params
       params.require(:konkurs).permit(:ime, :iznos, :rok, :otvaranje, :opis, :valuta_id, :vrsta_id, :status_id, :raspisivac_id, :dokument)
     end
