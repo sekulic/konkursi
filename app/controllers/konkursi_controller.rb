@@ -3,6 +3,7 @@ class KonkursiController < ApplicationController
   include KonkursiHelper 
   before_action :check_isadmin?, only: [:new, :edit, :update, :destroy, :create, :edit]
   before_action :map_all, only: [:new, :create, :update, :edit]  
+  before_action :set_konkurs, only: [:show, :edit, :update, :destroy]  
 
   def index
      @konkursi = Konkurs.all.paginate(:page => params[:page], :per_page => 12)
@@ -47,7 +48,6 @@ class KonkursiController < ApplicationController
   end
 
   def show
-    @konkurs = Konkurs.find(params[:id])
     @kon_ap = AplikantKonkurs.find_all_by_konkurs_id(@konkurs[:id])
     @kon_se = SektoriKonkurs.find_all_by_konkurs_id(@konkurs[:id])
   end
@@ -57,7 +57,6 @@ class KonkursiController < ApplicationController
   end
 
   def edit  
-    @konkurs = Konkurs.find(params[:id])
   end
 
   def create      
@@ -83,7 +82,6 @@ class KonkursiController < ApplicationController
 
   def update
       respond_to do |format|
-       @konkurs = Konkurs.find params[:id]
          if @konkurs.update(konkurs_params)
             @izbris = SektoriKonkurs.find_all_by_konkurs_id(@konkurs[:id])
             @izbris.each do |izbris|
@@ -111,7 +109,6 @@ class KonkursiController < ApplicationController
   end
 
   def destroy
-      @konkurs = Konkurs.find(params[:id])
       @konkurs.destroy
       @sektori_konkurs = SektoriKonkurs.find_all_by_konkurs_id(@konkurs[:id])
       @sektori_konkurs.each do |sektori_konkurs|
@@ -124,6 +121,9 @@ class KonkursiController < ApplicationController
   end
 
   private  
+    def set_konkurs
+      @konkurs = Konkurs.find(params[:id])
+    end  
     def konkurs_params
       params.require(:konkurs).permit(:ime, :iznos, :rok, :otvaranje, :opis, :valuta_id, :vrsta_id, :status_id, :raspisivac_id, :dokument)
     end
