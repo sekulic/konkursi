@@ -1,8 +1,8 @@
 class KonkursiController < ApplicationController
   include ApplicationHelper 
   include KonkursiHelper 
-  before_action :check_isadmin?, only: [:new, :edit, :update, :destroy, :create]
-  before_action :map_all, only: [:new, :create, :update]  
+  before_action :check_isadmin?, only: [:new, :edit, :update, :destroy, :create, :edit]
+  before_action :map_all, only: [:new, :create, :update, :edit]  
 
   def index
      @konkursi = Konkurs.all.paginate(:page => params[:page], :per_page => 12)
