@@ -21,7 +21,4 @@ module ApplicationHelper
       "#{title} | #{page_title}"
     end
   end
-   def check_isadmin?
-      current_user.admin?
-   end  
 end

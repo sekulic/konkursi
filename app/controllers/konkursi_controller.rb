@@ -2,6 +2,7 @@ class KonkursiController < ApplicationController
   include ApplicationHelper 
   include KonkursiHelper 
   before_action :check_isadmin?, only: [:new, :edit, :update, :destroy]
+  before_action :map_all, only: [:new, :create, :update]  
   # GET /konkursi
   # GET /konkursi.json
 
@@ -10,119 +11,68 @@ class KonkursiController < ApplicationController
   end
 
 
-def search
-  if params[:konkurs]
-     if konkurs.has_key?(:vrsta_ids)
-     @konkursi = Konkurs.find_all_by_vrsta_id(konkurs[:vrsta_ids])
-     else
-     @konkursi = Konkurs.all  
-     end
-     
-     
-#     @svi_konkursi_status = Array.new
-#     if konkurs.has_key?(:status_ids)
-#       konkurs[:status_ids].each do |status_id|
-#           @svi_konkursi_vrsta.each do |konkurs|
-#           @svi_konkursi_status.push(konkurs) if konkurs.status_id == status_id.to_i
-#           end    
-#       end
-#     else
-#     @svi_konkursi_status = @svi_konkursi_vrsta  
-#     end
-     
-#     @svi_konkursi_raspisivac = Array.new      
-#     if konkurs.has_key?(:raspisivac_ids)
-#       konkurs[:raspisivac_ids].each do |raspisivac_id|
-#         @svi_konkursi_status.each do |konkurs|
-#           @svi_konkursi_raspisivac.push(konkurs) if konkurs.raspisivac_id == raspisivac_id.to_i
-#         end    
-#       end
-#     else
-#     @svi_konkursi_raspisivac = @svi_konkursi_status  
-#     end
-     
-          
-     if konkurs.has_key?(:status_ids)
-      atribut = "status"
-      @konkursi = konkursi_filter(konkurs[:status_ids], @konkursi, atribut)
-     end
- 
-     if konkurs.has_key?(:raspisivac_ids)
-      atribut = "raspisivac"       
-      @konkursi = konkursi_filter(konkurs[:raspisivac_ids], @konkursi, atribut)
-     end
-
+  def search
+    if params[:konkurs]
+       if konkurs.has_key?(:vrsta_ids)
+       @konkursi = Konkurs.find_all_by_vrsta_id(konkurs[:vrsta_ids])
+       else
+       @konkursi = Konkurs.all  
+       end
+              
+       if konkurs.has_key?(:status_ids)
+        atribut = "status"
+        @konkursi = konkursi_filter(konkurs[:status_ids], @konkursi, atribut)
+       end
+   
+       if konkurs.has_key?(:raspisivac_ids)
+        atribut = "raspisivac"       
+        @konkursi = konkursi_filter(konkurs[:raspisivac_ids], @konkursi, atribut)
+       end
   
-     if konkurs.has_key?(:aplikant_ids)
-      atribut = "aplikant" 
-      @konkursi = konkursi_filter_apl(konkurs[:aplikant_ids], @konkursi, atribut)
-     end
- 
-     if konkurs.has_key?(:sektor_ids)
-      atribut = "sektor" 
-      @konkursi = konkursi_filter_apl(konkurs[:sektor_ids], @konkursi, atribut)
-     end 
-     
-#    @konkursi = Array.new   
-#     if konkurs.has_key?(:sektor_ids)
-#       @upiz = SektoriKonkurs.find_all_by_sektori_id(konkurs[:sektor_ids]) 
-#       @upiz.each do |upiz|
-#         @svi_konkursi_sektor_model = @svi_konkursi.find {|i| i["id"] == upiz.konkurs_id}
-#         @konkursi.push(@svi_konkursi_sektor_model)   
-#       end
-#    else
-#     @konkursi = @svi_konkursi
-#     end
-
-     @konkursi.uniq! { |x| x['id'] } unless @konkursi.nil?
-  else   
-    @konkursi = Konkurs.all
+    
+       if konkurs.has_key?(:aplikant_ids)
+        atribut = "aplikant" 
+        @konkursi = konkursi_filter_apl(konkurs[:aplikant_ids], @konkursi, atribut)
+       end
+   
+       if konkurs.has_key?(:sektor_ids)
+        atribut = "sektor" 
+        @konkursi = konkursi_filter_apl(konkurs[:sektor_ids], @konkursi, atribut)
+       end 
+  
+       @konkursi.uniq! { |x| x['id'] } unless @konkursi.nil?
+    else   
+      @konkursi = Konkurs.all
+    end
+       @konkursi = @konkursi.paginate(:page => params[:page], :per_page => 12)
+       render action: 'index'
   end
-     @konkursi = @konkursi.paginate(:page => params[:page], :per_page => 12)
-     render action: 'index'
-end
-  # GET /konkursi/1
-  # GET /konkursi/1.json
+
   def show
     @konkurs = Konkurs.find(params[:id])
     @kon_ap = AplikantKonkurs.find_all_by_konkurs_id(@konkurs[:id])
     @kon_se = SektoriKonkurs.find_all_by_konkurs_id(@konkurs[:id])
   end
 
-  # GET /konkursi/new
   def new
-    if current_user.try(:admin?)
-    @raspisivac = Raspisivac.all.map{|u| [ u.name, u.id ] }
-    @vrsta = Vrste.all.map{|u| [ u.name, u.id ] }
-    @valuta = Valuta.all.map{|u| [ u.name, u.id ] }
-    @status = Status.all.map{|u| [ u.name, u.id ] }    
+    if current_user.try(:admin?) 
     @konkurs = Konkurs.new
     else
      redirect_to root_path  
     end    
   end
 
-  # GET /konkursi/1/edit
   def edit
     if current_user.try(:admin?)    
     @konkurs = Konkurs.find(params[:id])
-    @raspisivac = Raspisivac.all.map{|u| [ u.name, u.id ] }    
-    @valuta = Valuta.all.map{|u| [ u.name, u.id ] }
-    @vrsta = Vrste.all.map{|u| [ u.name, u.id ] }
-    @status = Status.all.map{|u| [ u.name, u.id ] } 
+
     else
      redirect_to root_path  
     end       
   end
 
-  # POST /konkursi
-  # POST /konkursi.json
   def create
-    if current_user.try(:admin?)     
-      @raspisivac = Raspisivac.all.map{|u| [ u.name, u.id ] }
-      @vrsta = Vrste.all.map{|u| [ u.name, u.id ] }
-      @valuta = Valuta.all.map{|u| [ u.name, u.id ] }
-      @status = Status.all.map{|u| [ u.name, u.id ] }      
+    if current_user.try(:admin?)      
       @konkurs = Konkurs.new(konkurs_params)
       respond_to do |format|
         if @konkurs.save
@@ -146,14 +96,8 @@ end
     end 
   end
 
-  # PATCH/PUT /konkursi/1
-  # PATCH/PUT /konkursi/1.json
   def update
     if current_user.try(:admin?) 
-      @raspisivac = Raspisivac.all.map{|u| [ u.name, u.id ] }
-      @vrsta = Vrste.all.map{|u| [ u.name, u.id ] }
-      @valuta = Valuta.all.map{|u| [ u.name, u.id ] }
-      @status = Status.all.map{|u| [ u.name, u.id ] }
       respond_to do |format|
           @konkurs = Konkurs.find params[:id]
        if @konkurs.update(konkurs_params)
@@ -204,13 +148,13 @@ end
     end 
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-
-
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    
+  private    
+    def map_all
+      @raspisivac = Raspisivac.all.map{|u| [ u.name, u.id ] }
+      @vrsta = Vrste.all.map{|u| [ u.name, u.id ] }
+      @valuta = Valuta.all.map{|u| [ u.name, u.id ] }
+      @status = Status.all.map{|u| [ u.name, u.id ] }      
+    end
     def konkurs_params
       params.require(:konkurs).permit(:ime, :iznos, :rok, :otvaranje, :opis, :valuta_id, :vrsta_id, :status_id, :raspisivac_id, :dokument)
     end
