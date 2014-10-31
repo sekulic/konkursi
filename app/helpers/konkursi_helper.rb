@@ -26,7 +26,7 @@ module KonkursiHelper
        @svi_konkursi_aplsek.push(@konkursi_aplsek_record)   
      end  
   end
-   @svi_konkursi_aplsek.uniq! { |x| x['id'] } unless @svi_konkursi_aplsek.none?
+#   @svi_konkursi_aplsek.uniq! { |x| x['id'] } unless @svi_konkursi_aplsek.none?
    return @svi_konkursi_aplsek
  end   
  
