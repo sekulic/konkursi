@@ -12,9 +12,9 @@ class KonkursiController < ApplicationController
   def search
     if params[:konkurs]
        if konkurs.has_key?(:vrsta_ids)
-       @konkursi_vrsta = Konkurs.find_all_by_vrsta_id(konkurs[:vrsta_ids]).map{ |x| x.id }
+       @konkursi_vrsta = Konkurs.find_all_by_vrsta_id(konkurs[:vrsta_ids])
        else
-       @konkursi_vrsta = Konkurs.all.map{ |x| x.id }  
+       @konkursi_vrsta = Konkurs.all
        end 
        @konkursi = Array.new
        @konkursi = @konkursi_vrsta
