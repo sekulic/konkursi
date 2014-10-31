@@ -46,6 +46,7 @@ module KonkursiHelper
       atribut = "sektor" 
       konkursi = konkursi_filter_apl(params_konkurs[:sektor_ids], konkursi, atribut)
     end 
+    return konkursi
   end 
  
   def delete_dependencies(konkurs_id)
