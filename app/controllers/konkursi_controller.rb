@@ -18,23 +18,7 @@ class KonkursiController < ApplicationController
        end 
        @konkursi = Array.new
        @konkursi = @konkursi_vrsta
-#       @konkursi = filter_koknkursi(params[:konkurs], @konkursi)             
-       if konkurs.has_key?(:status_ids)
-        atribut = "status"
-        @konkursi = konkursi_filter(konkurs[:status_ids], @konkursi, atribut)
-       end
-       if konkurs.has_key?(:raspisivac_ids)
-        atribut = "raspisivac"       
-        @konkursi = konkursi_filter(konkurs[:raspisivac_ids], @konkursi, atribut)
-       end
-       if konkurs.has_key?(:aplikant_ids)
-        atribut = "aplikant" 
-        @konkursi = konkursi_filter_apl(konkurs[:aplikant_ids], @konkursi, atribut)
-       end
-       if konkurs.has_key?(:sektor_ids)
-        atribut = "sektor" 
-        @konkursi = konkursi_filter_apl(konkurs[:sektor_ids], @konkursi, atribut)
-       end  
+       @konkursi = filter_koknkursi(params[:konkurs], @konkursi)             
     else   
       @konkursi = Konkurs.all
     end
