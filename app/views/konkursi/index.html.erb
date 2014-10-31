@@ -87,7 +87,15 @@
     </tr>
   </thead>
   <tbody>
-
+  	<% @konkursi.each do |konkurs| %>
+    <tr>
+      <td><%= konkurs.id %></td>
+      <td><%= link_to konkurs.ime, konkurs_path(konkurs) %></td>
+      <td><%= konkurs.iznos %></td>
+      <td><%= konkurs.rok %></td>
+	  <td><%= konkurs.otvaranje %></td>	    
+    </tr>
+    <% end %>
   </tbody>
 </table>
 <div class="apple_pagination">
