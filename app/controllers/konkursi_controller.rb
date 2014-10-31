@@ -32,8 +32,7 @@ class KonkursiController < ApplicationController
        if konkurs.has_key?(:sektor_ids)
         atribut = "sektor" 
         @konkursi = konkursi_filter_apl(konkurs[:sektor_ids], @konkursi, atribut)
-       end 
-      @konkursi.uniq! { |x| x['id'] } 
+       end  
     else   
       @konkursi = Konkurs.all
     end

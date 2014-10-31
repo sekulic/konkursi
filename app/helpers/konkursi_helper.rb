@@ -25,7 +25,8 @@ module KonkursiHelper
        @konkursi_aplsek_record = konkursi.find {|i| i["id"] == aplsek_kon.konkurs_id}
        @svi_konkursi_aplsek.push(@konkursi_aplsek_record)   
      end  
-  end 
+  end
+   @svi_konkursi_aplsek.uniq! { |x| x['id'] } unless @svi_konkursi_aplsek.none?
    return @svi_konkursi_aplsek
  end   
  
