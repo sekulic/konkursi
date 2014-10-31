@@ -21,4 +21,15 @@ module ApplicationHelper
       "#{title} | #{page_title}"
     end
   end
+  def check_isadmin?
+     unless current_user.try(:admin?)
+       redirect_to root_path
+     end
+  end      
+  def map_all
+    @raspisivac = Raspisivac.all.map{|u| [ u.name, u.id ] }
+    @vrsta = Vrste.all.map{|u| [ u.name, u.id ] }
+    @valuta = Valuta.all.map{|u| [ u.name, u.id ] }
+    @status = Status.all.map{|u| [ u.name, u.id ] }      
+  end    
 end
