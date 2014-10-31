@@ -16,24 +16,24 @@ class KonkursiController < ApplicationController
        else
        @konkursi = Konkurs.all  
        end 
-       @konkursi = filter_koknkursi(params[:konkurs], @konkursi)             
-#       if konkurs.has_key?(:status_ids)
-#        atribut = "status"
-#        @konkursi = konkursi_filter(konkurs[:status_ids], @konkursi, atribut)
-#       end
-#       if konkurs.has_key?(:raspisivac_ids)
-#        atribut = "raspisivac"       
-#        @konkursi = konkursi_filter(konkurs[:raspisivac_ids], @konkursi, atribut)
-#       end
-#       if konkurs.has_key?(:aplikant_ids)
-#        atribut = "aplikant" 
-#        @konkursi = konkursi_filter_apl(konkurs[:aplikant_ids], @konkursi, atribut)
-#       end
-#       if konkurs.has_key?(:sektor_ids)
-#        atribut = "sektor" 
-#        @konkursi = konkursi_filter_apl(konkurs[:sektor_ids], @konkursi, atribut)
-#       end 
-       @konkursi.uniq! { |x| x['id'] } unless @konkursi.nil?
+#       @konkursi = filter_koknkursi(params[:konkurs], @konkursi)             
+       if konkurs.has_key?(:status_ids)
+        atribut = "status"
+        @konkursi = konkursi_filter(konkurs[:status_ids], @konkursi, atribut)
+       end
+       if konkurs.has_key?(:raspisivac_ids)
+        atribut = "raspisivac"       
+        @konkursi = konkursi_filter(konkurs[:raspisivac_ids], @konkursi, atribut)
+       end
+       if konkurs.has_key?(:aplikant_ids)
+        atribut = "aplikant" 
+        @konkursi = konkursi_filter_apl(konkurs[:aplikant_ids], @konkursi, atribut)
+       end
+       if konkurs.has_key?(:sektor_ids)
+        atribut = "sektor" 
+        @konkursi = konkursi_filter_apl(konkurs[:sektor_ids], @konkursi, atribut)
+       end 
+      @konkursi.uniq! { |x| x['id'] } unless @konkursi.nil?
     else   
       @konkursi = Konkurs.all
     end
