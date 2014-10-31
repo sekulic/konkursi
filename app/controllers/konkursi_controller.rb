@@ -1,10 +1,8 @@
 class KonkursiController < ApplicationController
   include ApplicationHelper 
   include KonkursiHelper 
-  before_action :check_isadmin?, only: [:new, :edit, :update, :destroy]
+  before_action :check_isadmin?, only: [:new, :edit, :update, :destroy, :create]
   before_action :map_all, only: [:new, :create, :update]  
-  # GET /konkursi
-  # GET /konkursi.json
 
   def index
      @konkursi = Konkurs.all.paginate(:page => params[:page], :per_page => 12)
@@ -55,24 +53,14 @@ class KonkursiController < ApplicationController
   end
 
   def new
-    if current_user.try(:admin?) 
-    @konkurs = Konkurs.new
-    else
-     redirect_to root_path  
-    end    
+    @konkurs = Konkurs.new   
   end
 
-  def edit
-    if current_user.try(:admin?)    
+  def edit  
     @konkurs = Konkurs.find(params[:id])
-
-    else
-     redirect_to root_path  
-    end       
   end
 
-  def create
-    if current_user.try(:admin?)      
+  def create      
       @konkurs = Konkurs.new(konkurs_params)
       respond_to do |format|
         if @konkurs.save
@@ -91,48 +79,38 @@ class KonkursiController < ApplicationController
           format.json { render json: @konkurs.errors, status: :unprocessable_entity }
         end
       end
-    else
-     redirect_to root_path  
-    end 
   end
 
   def update
-    if current_user.try(:admin?) 
       respond_to do |format|
-          @konkurs = Konkurs.find params[:id]
-       if @konkurs.update(konkurs_params)
-          @izbris = SektoriKonkurs.find_all_by_konkurs_id(@konkurs[:id])
-          @izbris.each do |izbris|
-            izbris.destroy
+       @konkurs = Konkurs.find params[:id]
+         if @konkurs.update(konkurs_params)
+            @izbris = SektoriKonkurs.find_all_by_konkurs_id(@konkurs[:id])
+            @izbris.each do |izbris|
+              izbris.destroy
+            end
+            konkurs_sektor_params[:sektor_ids].each do |sektor_id|
+            @upis = SektoriKonkurs.new(:sektori_id => sektor_id.to_i, :konkurs_id => @konkurs[:id])
+            @upis.save 
+            end 
+            @izbris2 = AplikantKonkurs.find_all_by_konkurs_id(@konkurs[:id])
+            @izbris2.each do |izbris2|
+              izbris2.destroy
+            end
+            konkurs_aplikant_params[:aplikant_ids].each do |aplikant_id|
+            @upis2 = AplikantKonkurs.new(:aplikant_id => aplikant_id.to_i, :konkurs_id => @konkurs[:id])
+            @upis2.save 
+            end                    
+            format.html { redirect_to @konkurs, notice: 'Konkurs was successfully updated.' }
+            format.json { head :no_content }
+          else
+            format.html { render action: 'edit' }
+            format.json { render json: @konkurs.errors, status: :unprocessable_entity }
           end
-          konkurs_sektor_params[:sektor_ids].each do |sektor_id|
-          @upis = SektoriKonkurs.new(:sektori_id => sektor_id.to_i, :konkurs_id => @konkurs[:id])
-          @upis.save 
-          end 
-          @izbris2 = AplikantKonkurs.find_all_by_konkurs_id(@konkurs[:id])
-          @izbris2.each do |izbris2|
-            izbris2.destroy
-          end
-          konkurs_aplikant_params[:aplikant_ids].each do |aplikant_id|
-          @upis2 = AplikantKonkurs.new(:aplikant_id => aplikant_id.to_i, :konkurs_id => @konkurs[:id])
-          @upis2.save 
-          end                    
-          format.html { redirect_to @konkurs, notice: 'Konkurs was successfully updated.' }
-          format.json { head :no_content }
-        else
-          format.html { render action: 'edit' }
-          format.json { render json: @konkurs.errors, status: :unprocessable_entity }
-        end
-      end
-    else
-     redirect_to root_path  
-    end     
+      end   
   end
 
-  # DELETE /konkursi/1
-  # DELETE /konkursi/1.json
   def destroy
-    if current_user.try(:admin?) 
       @konkurs = Konkurs.find(params[:id])
       @konkurs.destroy
       @sektori_konkurs = SektoriKonkurs.find_all_by_konkurs_id(@konkurs[:id])
@@ -143,12 +121,14 @@ class KonkursiController < ApplicationController
         format.html { redirect_to konkursi_url }
         format.json { head :no_content }
       end
-    else
-     redirect_to root_path  
-    end 
   end
 
-  private    
+  private  
+    def check_isadmin?
+       unless current_user.try(:admin?)
+         redirect_to root_path
+       end
+    end      
     def map_all
       @raspisivac = Raspisivac.all.map{|u| [ u.name, u.id ] }
       @vrsta = Vrste.all.map{|u| [ u.name, u.id ] }
