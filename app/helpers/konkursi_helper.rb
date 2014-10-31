@@ -15,17 +15,17 @@ module KonkursiHelper
   
   def konkursi_filter_apl(ids, konkursi, atribut)
      @svi_konkursi_aplsek = Array.new
+     @onkursi_aplsek_record = Hash.new
      if atribut == "aplikant"
        @aplsek_konkurs = AplikantKonkurs.find_all_by_aplikant_id(ids) 
      elsif atribut == "sektor"
        @aplsek_konkurs = SektoriKonkurs.find_all_by_sektori_id(ids) 
      end 
-     unless @aplsek_konkurs.nil? 
        @aplsek_konkurs.each do |aplsek_kon|
        @konkursi_aplsek_record = konkursi.find {|i| i["id"] == aplsek_kon.konkurs_id}
        @svi_konkursi_aplsek.push(@konkursi_aplsek_record)   
-     end  
-  end
+  end                      
+   @svi_konkursi_aplsek.uniq! { |x| x['id']  }
    return @svi_konkursi_aplsek
  end   
  
