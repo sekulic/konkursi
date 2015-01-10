@@ -1,9 +1,9 @@
 <div class="col-lg-3">
 <div class="list-group">
-<%    @raspisivac = Raspisivac.all
-    @vrsta = Vrste.all.map{|u| [ u.name, u.id ] }
-    @status = Status.all.map{|u| [ u.name, u.id ] }    
-    @konkurs = Konkurs.new %>
+<%  @raspisivac = Raspisivac.all %>
+<%  @vrsta = Vrste.all.map{|u| [ u.name, u.id ] } %>
+<%  @status = Status.all.map{|u| [ u.name, u.id ] } %>    
+<%  @konkurs = Konkurs.new %>
 <% if @konkurs.errors.any? %>
 <ul>
   <% @konkurs.errors.full_messages.each do |msg| %>
