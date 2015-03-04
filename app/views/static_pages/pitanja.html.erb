@@ -1,5 +1,5 @@
 <%= render 'shared/alerti' %>
-<div class="col-lg-9">
+<div class="col-lg-9 col-md-9">
 <% if user_signed_in? %>
 <%= content_tag 'div', 'loading ... ', id: "sadrzaj", data: {pitanja: Pit.all} %>
 <%= content_tag 'div', '', id: "korisnici", data: {korisnici: User.all} %>

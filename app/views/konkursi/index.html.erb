@@ -2,7 +2,7 @@
 <%= render 'shared/alerti' %>
 <div class="row">
 <%= render 'shared/left_sidebar_admin' %>
-<div class="col-lg-9">
+<div class="col-lg-9 col-md-9">
 <div class="well bs-component">
 <% if @konkursi.none? %>
 <% @konkursi = Konkurs.all.paginate(:page => params[:page], :per_page => 12) %>
@@ -64,7 +64,7 @@
 <% else %>
 <%= render 'shared/alerti' %>
 <div class="row">
-<div class="col-lg-9">
+<div class="col-lg-9 col-md-9">
 <div class="well bs-component">
 <% if @konkursi.none? %>
 <% @konkursi = Konkurs.all.paginate(:page => params[:page], :per_page => 12) %>

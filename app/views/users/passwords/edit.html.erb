@@ -2,7 +2,7 @@
 <div class="row">
 <%= render 'shared/left_sidebar' %>
 
-<div class="col-lg-5">
+<div class="col-lg-5 col-md-5">
 <div class="well bs-component">
 <legend>Promenite vašu lozinku.</legend>
 
@@ -12,22 +12,22 @@
 
 
   <div class="form-group">
-  	<%= f.label :password, "Nova lozinka", :class => 'col-lg-2 control-label' %>
-    <div class="col-lg-10">
+  	<%= f.label :password, "Nova lozinka", :class => 'col-lg-2 col-md-2 control-label' %>
+    <div class="col-lg-10 col-md-10">
       <%= f.password_field :password, autofocus: true, autocomplete: "off", :class => 'form-control' %>
     </div>
   </div>
 
 
   <div class="form-group">
-  	<%= f.label :password_confirmation, "Potvrdite novu lozinku", :class => 'col-lg-2 control-label' %>
-    <div class="col-lg-10">
+  	<%= f.label :password_confirmation, "Potvrdite novu lozinku", :class => 'col-lg-2 col-md-2 control-label' %>
+    <div class="col-lg-10 col-md-10">
       <%= f.password_field :password_confirmation, autocomplete: "off", autofocus: true, :class => 'form-control' %>
     </div>
   </div>
 
   <div class="form-group">
-  <div class="col-lg-10 col-lg-offset-2">
+  <div class="col-lg-10 col-lg-offset-2 col-md-10 col-md-offset-2">
   <%= f.submit "Promeni", :class => 'btn btn-primary' %>
   </div>
   </div>

@@ -2,7 +2,7 @@
 <div class="row">
 <%= render 'shared/left_sidebar' %>
 
-<div class="col-lg-5">
+<div class="col-lg-5 col-md-5">
 <% provide(:title, 'Kontakt') %>
 <div class="well bs-component">
 <h1>Kontakt</h1>
@@ -11,19 +11,19 @@
   <fieldset>
   <div class="form-group">
   	
-  <%= label_tag(:email, "Email", class: "col-lg-2 control-label") %>
-  <div class="col-lg-10">
+  <%= label_tag(:email, "Email", class: "col-lg-2 col-md-2 control-label") %>
+  <div class="col-lg-10 col-md-10">
   <%= text_field_tag(:email, nil, placeholder: 'Email na koji želite da dobijete odgovor', class: "form-control") %>
   </div>
   </div>
   <div class="form-group">
-    <%= label_tag(:opis, "Pitanje:", class: 'col-lg-2 control-label')  %>
-    <div class="col-lg-10">
+    <%= label_tag(:opis, "Pitanje:", class: 'col-lg-2 col-md-2 control-label')  %>
+    <div class="col-lg-10 col-md-10">
       <%= text_area_tag(:opis, nil, class: 'form-control', rows: "6") %>
     </div>
   </div>
   <div class="form-group">
-  	<div class="col-lg-10 col-lg-offset-2">
+  	<div class="col-lg-10 col-lg-offset-2 col-md-10 col-md-offset-2">
     <%= submit_tag("Pošalji", class: "btn btn-primary")%>
     </div>
   </div>

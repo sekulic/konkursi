@@ -1,4 +1,4 @@
-<div class="col-lg-3">
+<div class="col-lg-3 col-md-3">
 <div class="jumbotron" style="padding: 1px 5px 5px 5px;">
 	<center><h3 class="text-primary">Pretraga Konkursa</h3></center>
 <div class="list-group">
@@ -12,10 +12,10 @@
 
 		<% Vrste.all.each_with_index do |vrsta| %>
 		<div class="row">
-		<div class="col-lg-10">
+		<div class="col-lg-10 col-md-10">
     	<label><%= vrsta.name %></label>
     	</div>		
-		<div class="col-lg-2">
+		<div class="col-lg-2 col-md-2">
     	<label align ="right"><%= check_box_tag :vrsta_ids, vrsta.id, false, :name => 'konkurs[vrsta_ids][]'%></label>	
 		</div>
 		</div>
@@ -28,10 +28,10 @@
 
 		<% Status.all.each_with_index do |status| %>
 		<div class="row">
-		<div class="col-lg-10">
+		<div class="col-lg-10 col-md-10">
     	<label><%= status.name %></label>
     	</div>		
-		<div class="col-lg-2">
+		<div class="col-lg-2 col-md-2">
     	<label align ="right"><%= check_box_tag :status_ids, status.id, false, :name => 'konkurs[status_ids][]'%></label>	
 		</div>
 		</div>
@@ -44,10 +44,10 @@
 
 		<% Raspisivac.all.each_with_index do |raspisivac| %>
 		<div class="row">
-		<div class="col-lg-10">
+		<div class="col-lg-10 col-md-10">
     	<label><%= raspisivac.name %></label>
     	</div>		
-		<div class="col-lg-2">
+		<div class="col-lg-2 col-md-2">
     	<label align ="right"><%= check_box_tag :raspisivac_ids, raspisivac.id, false, :name => 'konkurs[raspisivac_ids][]'%></label>	
 		</div>
 		</div>
@@ -61,10 +61,10 @@
 
 		<% Aplikant.all.each_with_index do |aplikant| %>
 		<div class="row">
-		<div class="col-lg-10">
+		<div class="col-lg-10 col-md-10">
     	<label><%= aplikant.name %></label>
     	</div>		
-		<div class="col-lg-2">
+		<div class="col-lg-2 col-md-2">
     	<label align ="right"><%= check_box_tag :aplikant_ids, aplikant.id, false, :name => 'konkurs[aplikant_ids][]'%></label>	
 		</div>
 		</div>
@@ -78,10 +78,10 @@
 
 		<% Sektori.all.each_with_index do |sektor| %>
 		<div class="row">
-		<div class="col-lg-10">
+		<div class="col-lg-10 col-md-10">
     	<label><%= sektor.name %></label>
     	</div>		
-		<div class="col-lg-2">
+		<div class="col-lg-2 col-md-2">
     	<label align ="right"><%= check_box_tag :sektor_ids, sektor.id, false, :name => 'konkurs[sektor_ids][]'%></label>	
 		</div>
 		</div>
